@@ -24,6 +24,11 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         // ...
     }
     
+    @IBAction func didTapSignOut(_ sender: Any) {
+        GIDSignIn.sharedInstance().signOut()
+    }
+    
+    
     
 
 
