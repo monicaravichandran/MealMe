@@ -9,6 +9,7 @@
 import Firebase
 import GoogleSignIn
 
+
 import UIKit
 
 @UIApplicationMain
@@ -16,6 +17,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
+    let userDefault = UserDefaults()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -32,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     // Google sign in helper functions
     @available(iOS 9.0, *)
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:])
         -> Bool {
             return GIDSignIn.sharedInstance().handle(url,
                                                      sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
@@ -41,9 +43,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         // ...
+        print("sign in")
         if let error = error {
-            // ...
+            print(error.localizedDescription)
             return
+        }
+        else
+        {
+            guard let authentication = user.authentication else {return}// when user signs in correctly, we capture the user info that google provides
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+            
+            // authenticate user to firebase
+            Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
+                if error == nil
+                {
+                    print(result?.user.email)
+                    print(result?.user.displayName)
+                    self.userDefault.set(true, forKey: "usersignedin")
+                    self.userDefault.synchronize()
+                    // make sure user goes to the right window when signed in
+                    self.window?.rootViewController?.performSegue(withIdentifier: "SignInSegue", sender: nil)
+                }
+                else
+                {
+                    print(error?.localizedDescription)
+                }
+                
+            }
+            
         }
         
         guard let authentication = user.authentication else { return }
@@ -91,9 +118,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    /*
     @IBAction func didTapSignOut(_ sender: AnyObject) {
-        GIDSignIn.sharedInstance().signOut()
+        //GIDSignIn.sharedInstance().signOut()
+        do {
+            try Auth.auth().signOut()
+            try GIDSignIn.sharedInstance()?.signOut()
+            userDefault.removeObject(forKey: "usersignedin")
+            userDefault.synchronize()
+            self.window?.rootViewController?.performSegue(withIdentifier: "SignOutSegue", sender: nil)
+            print("HERE!")
+        } catch let error as NSError{
+            print(error.localizedDescription)
+            
+        }
     }
+ */
 
 
 }

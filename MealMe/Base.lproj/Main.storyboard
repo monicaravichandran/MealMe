@@ -18,14 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCs-fW-x5A" customClass="GIDSignInButton">
-                                <rect key="frame" x="87" y="675" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="didTapSignIn:" destination="BYZ-38-t0r" eventType="valueChanged" id="ITz-15-9PN"/>
-                                </connections>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpc-0M-XNX">
                                 <rect key="frame" x="177" y="159" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -34,6 +26,42 @@
                                     <action selector="didTapSignOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7f9-F6-wVw"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCs-fW-x5A" customClass="GIDSignInButton">
+                                <rect key="frame" x="87" y="671" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LwC-1a-Xnk">
+                                        <rect key="frame" x="97" y="35" width="46" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <segue destination="ybD-5m-yq5" kind="show" identifier="SignInSegue" id="kPA-4G-Zmg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="didTapSignIn:" destination="BYZ-38-t0r" eventType="valueChanged" id="ITz-15-9PN"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m4P-bf-112" customClass="GIDSignInButton">
+                                <rect key="frame" x="87" y="367" width="240" height="135"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CzW-pS-LTg">
+                                        <rect key="frame" x="90" y="62" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <segue destination="ybD-5m-yq5" kind="show" identifier="SignInSegue" id="KdR-bD-ywZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="LKF-pg-wsl"/>
+                                </constraints>
+                            </view>
+
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -44,67 +72,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
+            <point key="canvasLocation" x="47.826086956521742" y="34.821428571428569"/>
         </scene>
-        <!--Eater View Controller-->
-        <scene sceneID="7Ny-cg-9ji">
+        <!--Sign Out View Controller-->
+        <scene sceneID="6FT-LF-6vY">
             <objects>
-                <viewController id="p0K-Yt-Nah" customClass="EaterViewController" customModule="MealMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4sx-AQ-FYL">
+                <viewController id="ybD-5m-yq5" customClass="SignOutViewController" customModule="MealMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gPr-bs-iIA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BC2-xm-YOF">
-                                <rect key="frame" x="0.0" y="151" width="424" height="708"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6uN-jg-kAa">
+                                <rect key="frame" x="79" y="369" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dh9-fF-Ah6">
+                                        <rect key="frame" x="70" y="49" width="101" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="SignOutButton"/>
+                                        <connections>
+                                            <action selector="signOutPressed:" destination="ybD-5m-yq5" eventType="touchUpInside" id="VG8-Y3-nxy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="JSy-ng-30f">
-                                <rect key="frame" x="0.0" y="96" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="p0K-Yt-Nah" id="b1E-Bz-RTy"/>
-                                </connections>
-                            </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FOOD SEARCH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dx-mn-Ha2">
-                                <rect key="frame" x="148" y="57" width="118" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <gestureRecognizers/>
-                        <viewLayoutGuide key="safeArea" id="bYo-Ky-Aux"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="boS-De-uEI" appends="YES" id="gJX-HE-ys0"/>
-                        </connections>
+                        <viewLayoutGuide key="safeArea" id="zi6-CF-JyW"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VXz-Va-eba"/>
-                    <connections>
-                        <outlet property="FoodTable" destination="BC2-xm-YOF" id="PAk-Wa-k15"/>
-                        <outlet property="searchBar" destination="JSy-ng-30f" id="GzC-pH-yAQ"/>
-                        <outlet property="searchDisplayController" destination="kwv-nP-oHE" id="8Ge-jZ-7AQ"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kui-tl-mld" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="boS-De-uEI">
-                    <connections>
-                        <action selector="tapToHideKeyboard:" destination="p0K-Yt-Nah" id="xlg-Pa-Zni"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <searchDisplayController id="kwv-nP-oHE">
-                    <connections>
-                        <outlet property="delegate" destination="p0K-Yt-Nah" id="dkX-D3-bgE"/>
-                        <outlet property="searchContentsController" destination="p0K-Yt-Nah" id="aHn-Zh-SQ0"/>
-                        <outlet property="searchResultsDataSource" destination="p0K-Yt-Nah" id="oGX-ZQ-r1i"/>
-                        <outlet property="searchResultsDelegate" destination="p0K-Yt-Nah" id="b8N-vw-hsP"/>
-                    </connections>
-                </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4J5-ei-7qy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="786.95652173913049" y="102.45535714285714"/>
+            <point key="canvasLocation" x="866.66666666666674" y="14.732142857142856"/>
+
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="kPA-4G-Zmg"/>
+    </inferredMetricsTieBreakers>
 </document>
